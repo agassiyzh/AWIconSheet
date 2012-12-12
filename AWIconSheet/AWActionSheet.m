@@ -21,17 +21,9 @@
 @synthesize pageControl;
 @synthesize items;
 @synthesize IconDelegate;
--(void)dealloc
-{
-    IconDelegate= nil;
-    [scrollView release];
-    [pageControl release];
-    [items release];
-    [super dealloc];
-}
 
 
--(id)initwithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout
+-(id)initWithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout
 {
     int rowCount = 3;
     if (cout <=3) {
@@ -51,7 +43,7 @@
     if (self) {
         [self setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         IconDelegate = delegate;
-        self.scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, 320, 105*rowCount)] autorelease];
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, 320, 105*rowCount)];
         [scrollView setPagingEnabled:YES];
         [scrollView setBackgroundColor:[UIColor clearColor]];
         [scrollView setShowsHorizontalScrollIndicator:NO];
@@ -63,7 +55,7 @@
         [self addSubview:scrollView];
         
         if (cout > 9) {
-            self.pageControl = [[[UIPageControl alloc] initWithFrame:CGRectMake(0, 105*rowCount, 0, 20)] autorelease];
+            self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 105*rowCount, 0, 20)];
             [pageControl setNumberOfPages:0];
             [pageControl setCurrentPage:0];
             [pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
@@ -71,7 +63,7 @@
         }
         
         
-        self.items = [[[NSMutableArray alloc] initWithCapacity:cout] autorelease];
+        self.items = [[NSMutableArray alloc] initWithCapacity:cout];
         
     }
     return self;
@@ -147,8 +139,7 @@
             
             UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionForItem:)];
             [cell addGestureRecognizer:tap];
-            [tap release];
-            
+          
             //            [cell.iconView addTarget:self action:@selector(actionForItem:) forControlEvents:UIControlEventTouchUpInside];
             
         }
@@ -195,34 +186,28 @@
 @synthesize iconView;
 @synthesize titleLabel;
 
-- (void)dealloc
-{
-    [iconView release];
-    [titleLabel release];
-    
-    [super dealloc];
-}
-
 -(id)init
 {
     self = [super initWithFrame:CGRectMake(0, 0, 70, 70)];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         
-        self.iconView = [[[UIImageView alloc] initWithFrame:CGRectMake(6.5, 0, 57, 57)] autorelease];
+        self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(6.5, 0, 57, 57)];
         [iconView setBackgroundColor:[UIColor clearColor]];
         [[iconView layer] setCornerRadius:8.0f];
         [[iconView layer] setMasksToBounds:YES];
         
         [self addSubview:iconView];
         
-        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 63, 70, 13)] autorelease];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 37)];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
         [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setShadowColor:[UIColor blackColor]];
         [titleLabel setShadowOffset:CGSizeMake(0, 0.5)];
+      titleLabel.numberOfLines = 0;
+      titleLabel.lineBreakMode = UILineBreakModeWordWrap;
         [titleLabel setText:@""];
         [self addSubview:titleLabel];
     }

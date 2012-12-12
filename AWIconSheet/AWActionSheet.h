@@ -18,7 +18,7 @@
 @end
 
 @interface AWActionSheet : UIActionSheet
--(id)initwithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout;
+-(id)initWithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout;
 @end
 
 
