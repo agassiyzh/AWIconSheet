@@ -37,7 +37,7 @@
     }
     self = [super initWithTitle:titleBlank
                        delegate:nil
-              cancelButtonTitle:@"Cancel"
+              cancelButtonTitle:NSLocalizedStringWithDefaultValue(@"AWActionSheet_Cancel", nil, [NSBundle mainBundle], @"Cancel", @"Cancel")
          destructiveButtonTitle:nil
               otherButtonTitles:nil];
     if (self) {
